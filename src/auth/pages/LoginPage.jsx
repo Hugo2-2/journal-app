@@ -5,21 +5,21 @@ import { useForm } from '../../hooks';
 import { chekingAuthentication, startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth';
 
 import { Google } from '@mui/icons-material';
-import { Button, Link, TextField, Typography } from '@mui/material';
+import { Alert, Button, Link, TextField, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { useMemo } from 'react';
 
+const formData = {
+  email: '',
+  password: '',
+}
 
 export const LoginPage = () => {
 
-  const { status } = useSelector( state => state.auth );
+  const { status, errorMessage } = useSelector( (state) => state.auth );
 
   const dispatch = useDispatch();
-
-  const { email, password, onInputChange } = useForm({
-    email: 'hugo@google.com',
-    password: '123456',
-  });
+  const { email, password, onInputChange } = useForm(formData);
 
   const isAuthenticating = useMemo( () => status === 'checking', [ status ] );
 
@@ -40,7 +40,7 @@ export const LoginPage = () => {
 
   return (
     <AuthLayout title="Login">
-      <form onSubmit={ onSubmit }>
+      <form onSubmit={ onSubmit } className='animate_animate animate__animated animate__fadeIn animate__faster'>
           <Grid container>
             <Grid size={ 12 } sx={{ mt: 2 }}>
               <TextField 
@@ -64,6 +64,12 @@ export const LoginPage = () => {
                 value={ password }
                 onChange={ onInputChange }
               />
+            </Grid>
+
+            <Grid container sx={{ mt: 1 }}>
+            <Grid size={{ xs: 12, sm: 6 }} display={ !!errorMessage ? '' : 'none' }>
+                <Alert severity='error'>{ errorMessage }</Alert>
+              </Grid>
             </Grid>
             
             <Grid size={{ xs: 24, sm: 12 }} container spacing={ 2 } sx={{ mb: 2, mt: 1 }}>
