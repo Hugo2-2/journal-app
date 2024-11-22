@@ -8,6 +8,7 @@ import { Google } from '@mui/icons-material';
 import { Alert, Button, Link, TextField, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { useMemo } from 'react';
+import { width } from '@mui/system';
 
 const formData = {
   email: '',
@@ -66,8 +67,15 @@ export const LoginPage = () => {
               />
             </Grid>
 
-            <Grid container sx={{ mt: 1 }}>
-            <Grid size={{ xs: 12, sm: 6 }} display={ !!errorMessage ? '' : 'none' }>
+            <Grid 
+              container 
+              sx={{ mt: 1 }}
+              display={ !!errorMessage ? '' : 'none' }
+              size={{ xs: 24, sm: 12 }}
+            >
+              <Grid
+                size={{ xs: 24, sm: 12 }}
+              >
                 <Alert severity='error'>{ errorMessage }</Alert>
               </Grid>
             </Grid>

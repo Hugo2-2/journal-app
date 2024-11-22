@@ -93,12 +93,18 @@ export const RegisterPage = () => {
               />
             </Grid>
             
-            <Grid size={{ xs: 24, sm: 12 }} container spacing={ 2 } sx={{ mb: 2, mt: 1 }}>
-              <Grid size={{ xs: 12, sm: 6 }} display={ !!errorMessage ? '' : 'none' }>
-                <Alert severity='error'>{ errorMessage }</Alert>
+            <Grid
+              container
+              size={{ xs: 24, sm: 12 }}
+              sx={{ mt: 1 }}
+            >
+              <Grid size={{ xs: 24, sm: 12 }} display={ !!errorMessage ? '' : 'none' }>
+                  <Alert severity='error'>{ errorMessage }</Alert>
               </Grid>
+            </Grid>
 
-              <Grid size={{ xs: 12, sm: 12 }}>
+            <Grid size={{ xs: 24, sm: 12 }} container spacing={ 2 } sx={{ mb: 2, mt: 1 }}>
+              <Grid size={{ xs: 24, sm: 12 }}>
                 <Button
                   disabled={ isCheckingAuthentication }
                   type='submit'
